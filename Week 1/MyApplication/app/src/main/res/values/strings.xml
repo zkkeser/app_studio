@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="buttonText">Click me! (1)</string>
+    <string name="changeText">Hello! I am a text that changes! ;)</string>
+    <string name="colorChangeText">The button below changes the color of the text!</string>
+    <string name="buttonText2">Click me! (2)</string>
+    <string name="tip">Try holding the buttons down!</string>
+</resources>
