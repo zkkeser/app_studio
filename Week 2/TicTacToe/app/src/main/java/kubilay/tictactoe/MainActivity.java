@@ -74,13 +74,19 @@ class Board {
                 (ml == 1 && mm == 1&& mr == 1) ||
                 (bl == 1 && bm == 1&& br == 1) ||
                 (tl == 1 && mm == 1&& br == 1) ||
-                (bl == 1 && mm == 1&& tr == 1)){
+                (bl == 1 && mm == 1&& tr == 1) ||
+                (tl == 1 && ml == 1&& bl == 1) ||
+                (tm == 1 && mm == 1&& bm == 1) ||
+                (tr == 1 && mr == 1&& br == 1)){
             return 1;
         }else if (((tl == 2 && tm == 2&& tr == 2) ||
                 (ml == 2 && mm == 2&& mr == 2) ||
                 (bl == 2 && bm == 2&& br == 2) ||
                 (tl == 2 && mm == 2&& br == 2) ||
-                (bl == 2 && mm == 2&& tr == 2))){
+                (bl == 2 && mm == 2&& tr == 2) ||
+                (tl == 2 && ml == 2&& bl == 2) ||
+                (tm == 2 && mm == 2&& bm == 2) ||
+                (tr == 2 && mr == 2&& br == 2))){
             return 2;
         }else{
             return 0;
@@ -384,7 +390,6 @@ public class MainActivity extends AppCompatActivity {
                         Button brButton = (Button) findViewById(R.id.brButton);
 
                         winText.setText("");
-                        resetButton.setText("");
                         tlButton.setText("");
                         tmButton.setText("");
                         trButton.setText("");
