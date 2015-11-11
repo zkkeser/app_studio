@@ -38,6 +38,8 @@ class Citizen {
    public String toString(){
 	   return name+" "+salary+" "+savings+" "+loan;
    }
+   
+   
 }
 
 class CitizenTest {
@@ -55,6 +57,7 @@ class CitizenTest {
 	  
 	  System.out.println(e.toString());
 	  System.out.println(f.toString());
+	  
 	  
 	  
    }
