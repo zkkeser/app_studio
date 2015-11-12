@@ -12,3 +12,5 @@
 ![Highscores](3.png "Highscores")
 #Settings activity
 ![Settings](4.png "Settings")
+#Model
+![Model](model.png "Model")
