@@ -1,8 +1,8 @@
 # Design
--zkkeser@gmail.com
--zkkeser@hotmail.com
--Kubilay Keser
--10610286
+- zkkeser@gmail.com
+- zkkeser@hotmail.com
+- Kubilay Keser
+- 10610286
 
 #Main activity
 ![Main](1.png "Main")
