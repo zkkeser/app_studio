@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:key="pref_evil"
+        android:title="Evil!"
+        android:summary="Makes the game-mode evil"
+        android:defaultValue="false"/>
+
+    <ListPreference
+        android:key="pref_word_length"
+        android:title="Word Length"
+        android:summary="Decide the length of the words used"
+        android:entries="@array/wordLength"
+        android:entryValues="@array/wordLengthValues"
+        android:defaultValue="4"/>
+
+    <ListPreference
+        android:key="pref_number_guesses"
+        android:title="Number of guesses"
+        android:summary="Decide the number of guesses you want to have"
+        android:entries="@array/numberGuesses"
+        android:entryValues="@array/numberGuessesValues"
+        android:defaultValue="5"/>
+</PreferenceScreen>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="words_small">
+        <item>BEAR</item>
+        <item>BOAR</item>
+        <item>DEER</item>
+        <item>DUCK</item>
+        <item>HARE</item>
+        <item>HARE</item>
+    </string-array>
+    <string-array name="words_test">
+        <item>TEST</item>
+        <item>TAST</item>
+        <item>TESTT</item>
+        <item>TASTT</item>
+        <item>TESTTE</item>
+        <item>TASTTA</item>
+        <item>TESTTES</item>
+        <item>TASTTAS</item>
+        <item>TESTTEST</item>
+        <item>TESTTEST</item>
+    </string-array>
+</resources>
