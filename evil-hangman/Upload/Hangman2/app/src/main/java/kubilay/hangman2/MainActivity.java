@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,11 +18,13 @@ class Gameplay{
     //Properties of the class
     public String wordToGuess;
     public String currentState;
+    public ArrayList<String> wordList;
 
     //constructor of the class
-    public Gameplay(String aWordToGuess, String aCurrentState) {
+    public Gameplay(String aWordToGuess, String aCurrentState, ArrayList<String> aWordList, ArrayList<String> aUsedLetters) {
         wordToGuess = aWordToGuess;
         currentState = aCurrentState;
+        wordList = aWordList;
     }
 
     //Methods
@@ -36,15 +37,21 @@ class Gameplay{
         currentState = newState;
     }
 
-    public List<String> createList(String[] allWords, int wordLength){
-        List<String> wordList = new ArrayList<String>();
+    public void setWordList(ArrayList<String> newWordList){
+        wordList = newWordList;
+    }
+
+
+
+    public void createList(String[] allWords, int wordLength){
+        ArrayList<String> wordList = new ArrayList<String>();
 
         for (int i = 0; i < allWords.length ; i++){
             if (allWords[i].length() == (wordLength)){
                 wordList.add(allWords[i]);
             }
         }
-        return  wordList;
+        setWordList(wordList);
     }
 
 }
@@ -54,32 +61,32 @@ public class MainActivity extends Activity {
     public static String gameMode = "";
     public static int wordLength = 4;
     public static int numberGuesses = 5;
+    public static String usedLetters = "";
+    public static int score = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        updateSettings();
 
         Button submitButton = (Button)findViewById(R.id.submitButton);
         Button settingsButton = (Button)findViewById(R.id.settingsButton);
+        Button highscoreButton = (Button)findViewById(R.id.highscoreButton);
         Button newGameButton = (Button)findViewById(R.id.newGameButton);
-        final TextView debugText = (TextView)findViewById(R.id.debugText);
+        final TextView playerMessage = (TextView)findViewById(R.id.playerMessage);
+        final TextView usedLettersText = (TextView)findViewById(R.id.usedLettersText);
         final TextView wordTextView = (TextView)findViewById(R.id.wordToGuess);
         final EditText inputEditText = (EditText)findViewById(R.id.inputEditText);
         final TextView guessesTextView = (TextView)findViewById(R.id.guessesLeft);
-        final Gameplay hangman = new Gameplay("","");
+        final Gameplay hangman = new Gameplay("","",null, null);
 
         //Create a list of words based on word length
         String[] allWords = getResources().getStringArray(R.array.words_small);
-        final List<String> wordList = hangman.createList(allWords, wordLength);
+        hangman.createList(allWords, wordLength);
 
-        String popular = getPopularItem(wordList);
-        debugText.setText(popular);
-
-        //String[] wordsArray = {"food","four","fuzz"};
 
         //Generates a word and sets it as the word the user needs to guess
-        String wordToGuess = generateWord(wordList);
+        String wordToGuess = generateWord(hangman.wordList);
         hangman.setWord(wordToGuess);
         hangman.setState(dashWord(wordToGuess));
 
@@ -89,33 +96,61 @@ public class MainActivity extends Activity {
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                String letter = inputEditText.getText().toString();
+                String letter = inputEditText.getText().toString().toUpperCase();
                 inputEditText.setText("");
 
                 //Update the game good mode
-                if (gameMode == "good") {
+                if (gameMode.equals("good") && !invalidInput(letter)) {
                     if (checker(hangman.wordToGuess, letter)) {
+                        playerMessage.setText("Nice guess!");
                         wordTextView.setText(reconstruct(hangman.wordToGuess, hangman.currentState, letter));
                         hangman.setState(reconstruct(hangman.wordToGuess, hangman.currentState, letter));
+
                     } else {
+                        playerMessage.setText("Guess again!");
                         wrongGuess();
                         guessesTextView.setText("Guesses left: " + numberGuesses);
+                        usedLetters += letter + " ";
+                        usedLettersText.setText(usedLetters);
                     }
                 //Update game evil mode
-                }else{
-                    List<String> universe = new ArrayList<String>();
-                    for (int i = 0; i< wordList.size() ; i++ ){
-                        universe.add(dashWord(wordList.get(i)));
+                }else if (gameMode.equals("evil") && !invalidInput(letter)){
+                    //look for best way to dodge the answer
+                    ArrayList<String> universe = new ArrayList<>();
+                    for (int i = 0; i< hangman.wordList.size() ; i++ ){
+                        universe.add(reconstruct(hangman.wordList.get(i),hangman.currentState,letter));
                     }
-
                     String popular = getPopularItem(universe);
-                    debugText.setText(popular);
+                    ArrayList<String> newUniverse = new ArrayList<>();
+                    for(int i = 0; i< hangman.wordList.size(); i++){
+                        if (reconstruct(hangman.wordList.get(i),hangman.currentState,letter).equals(popular))
+                            newUniverse.add(hangman.wordList.get(i));
+                    hangman.setWordList(newUniverse);
+
+                    //update the state of the game
+                    if (!hangman.currentState.equals(popular)){ // if guess is right
+                        playerMessage.setText("Nice guess!");
+                        hangman.setState(popular);
+                        wordTextView.setText(popular);
+                    }else{                                      // if guess is wrong
+                        playerMessage.setText("Guess again!");
+                        wrongGuess();
+                        guessesTextView.setText("Guesses left:" + numberGuesses);
+                        usedLetters += letter + " ";
+                        usedLettersText.setText(usedLetters);
+                    }
+                    }
+                }else{
+                    playerMessage.setText("I'm sorry, but you're input is invalid!!");
                 }
 
 
                 if (winChecker(hangman.currentState)) {
-                    inputEditText.setText("You won!");
-                    // add score calculator below
+                    score = numberGuesses * wordLength;
+                    playerMessage.setText("You won! Your score is "+ score + "!");
+
+                }else if (numberGuesses == 0){
+                    playerMessage.setText("You lost, I'm sorry.");
                 }
             }
         });
@@ -123,23 +158,27 @@ public class MainActivity extends Activity {
         // Start a new game, using the new settings
         newGameButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                updateSettings();
                 final TextView wordTextView = (TextView)findViewById(R.id.wordToGuess);
                 final TextView guessesTextView = (TextView)findViewById(R.id.guessesLeft);
 
 
                 //Create a list of words based on word length
                 String[] allWords = getResources().getStringArray(R.array.words_small);
-                final List<String> wordList = hangman.createList(allWords, wordLength);
-
+                hangman.createList(allWords, wordLength);
 
                 //Generates a word and sets it as the word the user needs to guess
-                String wordToGuess = generateWord(wordList);
+                String wordToGuess = generateWord(hangman.wordList);
                 hangman.setWord(wordToGuess);
                 hangman.setState(dashWord(wordToGuess));
 
                 //Create interface
                 guessesTextView.setText("Guesses left: "+ numberGuesses);
                 wordTextView.setText(dashWord(hangman.wordToGuess));
+
+                //Reset interface
+                playerMessage.setText("");
+                usedLettersText.setText("");
             }
         });
 
@@ -149,6 +188,13 @@ public class MainActivity extends Activity {
                 Intent intentPreferences = new Intent(getApplicationContext(), SettingsActivity.class);
 
                 startActivityForResult(intentPreferences, SETTINGS_INFO);
+            }
+        });
+        // Open highscores screen
+        highscoreButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intentHighscores = new Intent(getApplicationContext(), HistoryViewActivity.class);
+                startActivity(intentHighscores);
             }
         });
     }
@@ -208,6 +254,15 @@ public class MainActivity extends Activity {
 
         }
         return element;
+    }
+
+    public boolean invalidInput(String letter){
+        String allLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        if (MainActivity.usedLetters.contains(letter) || 1 < letter.length() || !allLetters.contains(letter)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     //This selects a random word from the list of words and returns it
