@@ -8,16 +8,50 @@
         <item>HARE</item>
         <item>HARE</item>
     </string-array>
-    <string-array name="words_test">
-        <item>TEST</item>
-        <item>TAST</item>
-        <item>TESTT</item>
-        <item>TASTT</item>
-        <item>TESTTE</item>
-        <item>TASTTA</item>
-        <item>TESTTES</item>
-        <item>TASTTAS</item>
-        <item>TESTTEST</item>
-        <item>TESTTEST</item>
+	
+	<string-array name="words_small2">
+        <item>BEAR</item>
+        <item>BOAR</item>
+        <item>DEER</item>
+        <item>DUCK</item>
+        <item>HARE</item>
+        <item>HARE</item>
+		
+		<item>BEARA</item>
+        <item>BOARA</item>
+        <item>DEERA</item>
+        <item>DUCKA</item>
+        <item>HAREA</item>
+        <item>HAREA</item>
+		
+		<item>BEARAB</item>
+        <item>BOARAB</item>
+        <item>DEERAB</item>
+        <item>DUCKAB</item>
+        <item>HAREAB</item>
+        <item>HAREAB</item>
+		
+		<item>BEARABC</item>
+        <item>BOARABC</item>
+        <item>DEERABC</item>
+        <item>DUCKABC</item>
+        <item>HAREABC</item>
+        <item>HAREABC</item>
+		
+		<item>BEARABCD</item>
+        <item>BOARABCD</item>
+        <item>DEERABCD</item>
+        <item>DUCKABCD</item>
+        <item>HAREABCD</item>
+        <item>HAREABCD</item>
+		
+		<item>BEARABCDE</item>
+        <item>BOARABCDE</item>
+        <item>DEERABCDE</item>
+        <item>DUCKABCDE</item>
+        <item>HAREABCDE</item>
+        <item>HAREABCDE</item>
+		
     </string-array>
+    
 </resources>
