@@ -21,9 +21,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:id="@+id/wordToGuess"
+        android:id="@+id/wordTextView"
         android:textSize="40dp"
-        android:layout_below="@+id/guessesLeft"
+        android:layout_below="@+id/guessesTextView"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -31,9 +31,10 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:id="@+id/guessesLeft"
+        android:id="@+id/guessesTextView"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignRight="@+id/highscoreButton"
+        android:layout_alignEnd="@+id/highscoreButton" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -69,17 +70,16 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Used Letters"
-        android:id="@+id/usedLettersText"
-        android:layout_below="@+id/wordToGuess"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp" />
+        android:id="@+id/usedTextView"
+        android:layout_below="@+id/wordTextView"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text=""
-        android:id="@+id/playerMessage"
+        android:id="@+id/messageTextView"
         android:layout_above="@+id/inputEditText"
         android:layout_centerHorizontal="true" />
 
@@ -90,4 +90,15 @@
         android:id="@+id/highscoreButton"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="HANGMAN"
+        android:id="@+id/headerTextView"
+        android:layout_below="@+id/highscoreButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp" />
+
 </RelativeLayout>

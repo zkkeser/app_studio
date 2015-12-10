@@ -21,4 +21,5 @@
         android:entries="@array/numberGuesses"
         android:entryValues="@array/numberGuessesValues"
         android:defaultValue="5"/>
+
 </PreferenceScreen>

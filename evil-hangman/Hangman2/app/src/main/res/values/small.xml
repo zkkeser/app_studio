@@ -15,13 +15,11 @@
         <item>DEER</item>
         <item>DUCK</item>
         <item>HARE</item>
-        <item>HARE</item>
 		
 		<item>BEARA</item>
         <item>BOARA</item>
         <item>DEERA</item>
         <item>DUCKA</item>
-        <item>HAREA</item>
         <item>HAREA</item>
 		
 		<item>BEARAB</item>
@@ -29,13 +27,11 @@
         <item>DEERAB</item>
         <item>DUCKAB</item>
         <item>HAREAB</item>
-        <item>HAREAB</item>
 		
 		<item>BEARABC</item>
         <item>BOARABC</item>
         <item>DEERABC</item>
         <item>DUCKABC</item>
-        <item>HAREABC</item>
         <item>HAREABC</item>
 		
 		<item>BEARABCD</item>
@@ -43,13 +39,11 @@
         <item>DEERABCD</item>
         <item>DUCKABCD</item>
         <item>HAREABCD</item>
-        <item>HAREABCD</item>
 		
 		<item>BEARABCDE</item>
         <item>BOARABCDE</item>
         <item>DEERABCDE</item>
         <item>DUCKABCDE</item>
-        <item>HAREABCDE</item>
         <item>HAREABCDE</item>
 		
     </string-array>
