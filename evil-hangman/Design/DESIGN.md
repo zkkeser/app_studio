@@ -10,15 +10,15 @@ one wants to use it so pick out precise numbers. This can be especially difficul
 
 UX
 -------------------
-![Model](ux.jpg "Model")
+![Alt Text](ux.jpg "Model")
 
 Screenshots
 -------------------
-![Model](1.jpg "Model")
-![Model](2.jpg "Model")
-![Model](3.jpg "Model")
-![Model](4.jpg "Model")
+![Alt Text](1.png "main")
+![Alt Text](2.png "score")
+![Alt Text](3.png "setting")
+![Alt Text](4.png "setting2")
 
 Model
 -------------------
-![Model](model.jpg "Model")
+![Alt Text](model.jpg "Model")
