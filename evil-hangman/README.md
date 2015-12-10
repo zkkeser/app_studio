@@ -13,4 +13,4 @@ host of the game will do whatever it can to make you lose!
 - History functionality!
 
 #App UX#
-![ux](hangmanux.png "Ux")
+![Alt Text](ux.jpg "Ux")
