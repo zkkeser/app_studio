@@ -1,8 +1,8 @@
-# Design
-- zkkeser@gmail.com
-- zkkeser@hotmail.com
-- Kubilay Keser
-- 10610286
+Design document
+==================
+Kubilay Keser 10610286 <zkkeser@gmail.com>
+------------------
+
 
 #Main activity
 ![Main](1.png "Main")
@@ -13,4 +13,4 @@
 #Settings activity
 ![Settings](4.png "Settings")
 #Model
-![Model](model.png "Model")
+![Model](model.jpg "Model")
