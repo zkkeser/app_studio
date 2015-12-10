@@ -13,4 +13,4 @@ host of the game will do whatever it can to make you lose!
 - History functionality!
 
 #App UX#
-![Alt Text](ux.jpg "Ux")
+![Alt Text](/Design/ux.jpg "Ux")
